@@ -34,7 +34,7 @@ public class SearchActivity extends AppCompatActivity {
 
     String strBloodGroups[] = {"Select your Blood Group", "A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"};
     Spinner spinnerBloodGrp;
-    String strBloodGrpSelected;
+    private static String strBloodGrpSelected;
 
 
     Button btnSearch;
@@ -86,6 +86,12 @@ public class SearchActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public static String getBloodGroup()
+    {
+        String data=strBloodGrpSelected;
+        return data;
     }
 
 
