@@ -79,8 +79,8 @@ public class SearchActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GetDonorsApi();
-                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+//                GetDonorsApi();
+                Intent intent = new Intent(SearchActivity.this, SearchDisplayActivity.class);
                 startActivity(intent);
             }
         });
@@ -88,47 +88,48 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    private void GetDonorsApi() {
-        ArrayList<DonorLangModel> arrayList = new ArrayList<DonorLangModel>();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Utils.DONOR_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("TAG", "Display--onResponse:" + response);
 
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("data");
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                        String strDonorId = jsonObject1.getString("_id");
-                        String strUserName = jsonObject1.getString("userName");
-                        String strContactNo = jsonObject1.getString("contactNo");
-                        String strEmail = jsonObject1.getString("email");
-                        String strPassword = jsonObject1.getString("password");
-                        String strBtype = jsonObject1.getString("bloodType");
-                        Log.e("Blood Group: ", strBtype);
-                        Log.e(strBloodGrpSelected, "");
-
-                        if (strBtype.equals(strBloodGrpSelected)) {
-                            Log.e("BLOOD GROUP in if ", strBtype);
-                            list.enqueue(strUserName, strContactNo, strBtype, strEmail, strPassword);
-                        }
-
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("error: ", String.valueOf(error));
-            }
-        });
-
-        VolleySingleton.getInstance(SearchActivity.this).addToRequestQueue(stringRequest);
-
-
-    }
+//    private void GetDonorsApi() {
+//        ArrayList<DonorLangModel> arrayList = new ArrayList<DonorLangModel>();
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, Utils.DONOR_URL, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Log.e("TAG", "Display--onResponse:" + response);
+//
+//                try {
+//                    JSONObject jsonObject = new JSONObject(response);
+//                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+//                    for (int i = 0; i < jsonArray.length(); i++) {
+//                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+//                        String strDonorId = jsonObject1.getString("_id");
+//                        String strUserName = jsonObject1.getString("userName");
+//                        String strContactNo = jsonObject1.getString("contactNo");
+//                        String strEmail = jsonObject1.getString("email");
+//                        String strPassword = jsonObject1.getString("password");
+//                        String strBtype = jsonObject1.getString("bloodType");
+//                        Log.e("Blood Group: ", strBtype);
+//                        Log.e(strBloodGrpSelected, "");
+//
+//                        if (strBtype.equals(strBloodGrpSelected)) {
+//                            Log.e("BLOOD GROUP in if ", strBtype);
+//                            list.enqueue(strUserName, strContactNo, strBtype, strEmail, strPassword);
+//                        }
+//
+//                    }
+//
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("error: ", String.valueOf(error));
+//            }
+//        });
+//
+//        VolleySingleton.getInstance(SearchActivity.this).addToRequestQueue(stringRequest);
+//
+//
+//    }
 }
